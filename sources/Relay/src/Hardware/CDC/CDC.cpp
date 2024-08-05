@@ -2,6 +2,7 @@
 #include "Hardware/CDC/CDC.h"
 #include "Hardware/HAL/HAL.h"
 #include <usbd_desc.h>
+#include <cstring>
 
 
 static USBD_HandleTypeDef hUsbDeviceFS;
@@ -119,7 +120,7 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* /*pbuf*/, uint16_t /*length*/
 }
 
 
-static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t */*Len*/)
+static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *)
 {
     USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
     USBD_CDC_ReceivePacket(&hUsbDeviceFS);
