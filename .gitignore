@@ -1,1 +1,51 @@
+*.o
+*.d
+*.lst
+*.scvd
+*.out
+*.uvgui*.*
+~*
+
 archive.zip
+
+doc/Client-PC/Mathew/web/.vs/
+doc/Client-PC/Mathew/web/Web-Service-Diploma/bin/
+doc/Client-PC/Mathew/background process/ConsoleApp4/obj/
+doc/Client-PC/Mathew/web/Web-Service-Parameters/obj/
+doc/Client-PC/Mathew/background process/ConsoleApp4/bin/
+doc/Client-PC/Mathew/web/Web-Service-Parameters/bin/
+doc/Client-PC/Mathew/web/Web-Service-Parameters/bin/
+doc/Client-PC/Mathew/background process/.vs/
+doc/Client-PC/Mathew/background process/.vs/ConsoleApp4/DesignTimeBuild/
+doc/Client-PC/Mathew/web/Web-Service-Diploma/obj/
+
+sources/generated/
+sources/Device/Listings/
+sources/Device/Objects/
+sources/Device/Listings-Debug/
+sources/Device/Objects-Debug/
+sources/Device/DebugConfig/
+
+sources/GTC-3/Listings/
+sources/GTC-3/Objects/
+sources/GTC-3/Listings-Debug/
+sources/GTC-3/Objects-Debug/
+sources/GTC-3/DebugConfig/
+
+sources/MS-1/Listings/
+sources/MS-1/Objects/
+sources/MS-1/Listings-Debug/
+sources/MS-1/Objects-Debug/
+sources/MS-1/DebugConfig/
+
+sources/5-Governor/Listings/
+sources/5-Governor/Objects/
+sources/5-Governor/Listings-Debug/
+sources/5-Governor/Objects-Debug/
+sources/5-Governor/DebugConfig/
+
+sources/TwoSensors/Listings/
+sources/TwoSensors/Objects/
+sources/TwoSensors/Listings-Debug/
+sources/TwoSensors/Objects-Debug/
+sources/TwoSensors/DebugConfig/
