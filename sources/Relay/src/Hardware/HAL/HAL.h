@@ -1,6 +1,5 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "Utils/Text/String.h"
 
 
 struct PackedTime
@@ -25,8 +24,6 @@ struct PackedTime
 
     // Возвращает структура PackedTime, время в которой отстоит в будущее на timeMS миллисекунд
     void AddTime(uint timeMS);
-
-    String<> ToString() const;
 
 private:
 
@@ -87,7 +84,6 @@ extern "C" {
     void PendSV_Handler(void);
     void SysTick_Handler(void);
     void USB_LP_CAN1_RX0_IRQHandler(void);
-    void USART1_IRQHandler(void);
 
 #ifdef __cplusplus
 }
