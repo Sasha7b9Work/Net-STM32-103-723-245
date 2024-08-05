@@ -53,6 +53,9 @@ static int8_t CDC_Init_FS(void)
 {
     USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
     USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
+
+    HAL_UART_Receive_IT(&hUsbDeviceFS, (uint8_t *)UserTxBufferFS, 1)
+
     return (USBD_OK);
 }
 
@@ -124,6 +127,12 @@ static int8_t CDC_Receive_FS(uint8_t *, uint32_t *)
     USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
     USBD_CDC_ReceivePacket(&hUsbDeviceFS);
     return (USBD_OK);
+}
+
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    HAL_UART_Receive_IT(huart, (uint8_t *)UserRxBufferFS, 1);
 }
 
 
