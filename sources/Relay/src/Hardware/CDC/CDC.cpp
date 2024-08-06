@@ -1,7 +1,9 @@
 // 2022/04/20 08:53:58 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "Hardware/CDC/CDC.h"
 #include "Hardware/HAL/HAL.h"
+#include "Hardware/CDC/Decoder.h"
 #include <usbd_desc.h>
+#include <cstring>
 
 
 static USBD_HandleTypeDef hUsbDeviceFS;
@@ -122,7 +124,7 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* /*pbuf*/, uint16_t /*length*/
 
 static int8_t CDC_Receive_FS(uint8_t *buf, uint32_t *len)
 {
-    CDC::Transmit(buf, (int)*len);
+    Decoder::AppendData(buf, (int)*len);
 
     USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
     USBD_CDC_ReceivePacket(&hUsbDeviceFS);
@@ -152,6 +154,12 @@ uint8_t CDC::Transmit(const void *buffer, int size)
     result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
 
     return result;
+}
+
+
+void CDC::Transmit(pchar text)
+{
+    Transmit(text, (int)std::strlen(text));
 }
 
 #endif

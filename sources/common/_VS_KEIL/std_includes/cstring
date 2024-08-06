@@ -3,6 +3,8 @@
 namespace std
 {
     void          memcpy(void *dest, const void *src, unsigned int);
+    int           memcmp(const void *lhs, const void *rhs, unsigned int count);
+    char *        strchr(const char *str, int c);
     unsigned int  strlen(const char *);
     void         *memmove(void *destptr, const void *srcptr, size_t num);
     #include "string.h"

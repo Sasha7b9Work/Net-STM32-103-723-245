@@ -11,19 +11,62 @@ namespace Decoder
 
     static uint8 buffer[SIZE_BUFFER];
     static int pointer = 0;
+
+    static void AppendSymbol(uint8);
+
+    // Возвращает true, если buffer начинается с pchar
+    static bool BeginIs(pchar);
 }
 
 
 void Decoder::AppendData(uint8 *data, int size)
 {
-    if (pointer + size > SIZE_BUFFER)
+    for (int i = 0; i < size; i++)
+    {
+        AppendSymbol(*data++);
+    }
+
+    if (std::strchr((pchar)buffer, 0x0d))
+    {
+        if (BeginIs("#RELAY ON"))
+        {
+            CDC::Transmit("Relay on\n");
+        }
+        else if (BeginIs("#RELAY OFF"))
+        {
+            CDC::Transmit("Relay off\n");
+        }
+
+        pointer = 0;
+    }
+}
+
+
+bool Decoder::BeginIs(pchar text)
+{
+    return std::memcmp(buffer, text, std::strlen(text)) == 0;
+}
+
+
+void Decoder::AppendSymbol(uint8 symbol)
+{
+    if (symbol == 0x0a)
     {
         return;
     }
 
-    CDC::Transmit(data, size);
+    if (pointer == SIZE_BUFFER)
+    {
+        pointer = 0;
+    }
 
-    std::memcpy(buffer + pointer, data, (uint)size);
+    if (pointer == 0)
+    {
+        if (symbol != '#')
+        {
+            return;
+        }
+    }
 
-    pointer += size;
+    buffer[pointer++] = symbol;
 }
