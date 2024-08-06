@@ -21,6 +21,9 @@
 #define USB_DISCONNECT_PORT                 GPIOB
 #define USB_DISCONNECT_PIN                  GPIO_PIN_14
 
+#include <stm32f1xx_hal.h>
+#include <usbd_cdc.h>
+
 /* Private macro ------------------------------------------------------------- */
 /* Private variables --------------------------------------------------------- */
 PCD_HandleTypeDef hpcd;

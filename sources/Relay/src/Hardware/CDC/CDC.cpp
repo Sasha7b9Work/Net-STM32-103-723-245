@@ -16,6 +16,9 @@
   ******************************************************************************
   */
 
+#include <stm32f1xx_hal.h>
+#include <usbd_cdc.h>
+
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
   * @{
   */
@@ -100,7 +103,7 @@ static int8_t CDC_Itf_Init(void)
   if (HAL_UART_Init(&UartHandle) != HAL_OK)
   {
     /* Initialization Error */
-    Error_Handler();
+//    Error_Handler();
   }
 
   /* ##-2- Put UART peripheral in IT reception process ######################## */
@@ -108,7 +111,7 @@ static int8_t CDC_Itf_Init(void)
   if (HAL_UART_Receive_IT(&UartHandle, (uint8_t *) UserTxBuffer, 1) != HAL_OK)
   {
     /* Transfer error in reception process */
-    Error_Handler();
+//    Error_Handler();
   }
 
   /* ##-3- Configure the TIM Base generation ################################# */
@@ -119,7 +122,7 @@ static int8_t CDC_Itf_Init(void)
   if (HAL_TIM_Base_Start_IT(&TimHandle) != HAL_OK)
   {
     /* Starting Error */
-    Error_Handler();
+//    Error_Handler();
   }
 
   /* ##-5- Set Application Buffers ############################################ */
@@ -141,7 +144,7 @@ static int8_t CDC_Itf_DeInit(void)
   if (HAL_UART_DeInit(&UartHandle) != HAL_OK)
   {
     /* Initialization Error */
-    Error_Handler();
+//    Error_Handler();
   }
   return (USBD_OK);
 }
@@ -154,7 +157,7 @@ static int8_t CDC_Itf_DeInit(void)
   * @param  Len: Number of data to be sent (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t * pbuf, uint16_t length)
+static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t * pbuf, uint16_t /*length*/)
 {
   switch (cmd)
   {
@@ -221,7 +224,7 @@ static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t * pbuf, uint16_t length)
   * @param  htim: TIM handle
   * @retval None
   */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * /*htim*/)
 {
   uint32_t buffptr;
   uint32_t buffsize;
@@ -239,8 +242,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
 
     buffptr = UserTxBufPtrOut;
 
-    USBD_CDC_SetTxBuffer(&USBD_Device, (uint8_t *) & UserTxBuffer[buffptr],
-                         buffsize);
+    USBD_CDC_SetTxBuffer(&USBD_Device, (uint8_t *) & UserTxBuffer[buffptr],  (uint16)buffsize);
 
     if (USBD_CDC_TransmitPacket(&USBD_Device) == USBD_OK)
     {
@@ -282,9 +284,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef * huart)
   * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Itf_Receive(uint8_t * Buf, uint32_t * Len)
+static int8_t CDC_Itf_Receive(uint8_t *Buf, uint32_t *Len)
 {
-  HAL_UART_Transmit_DMA(&UartHandle, Buf, *Len);
+  HAL_UART_Transmit_DMA(&UartHandle, Buf, (uint16)(*Len));
   return (USBD_OK);
 }
 
@@ -293,7 +295,7 @@ static int8_t CDC_Itf_Receive(uint8_t * Buf, uint32_t * Len)
   * @param  huart: UART handle
   * @retval None
   */
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef * huart)
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef * /*huart*/)
 {
   /* Initiate next USB packet transfer once UART completes transfer
    * (transmitting data over Tx line) */
@@ -312,7 +314,7 @@ static void ComPort_Config(void)
   if (HAL_UART_DeInit(&UartHandle) != HAL_OK)
   {
     /* Initialization Error */
-    Error_Handler();
+//    Error_Handler();
   }
 
   /* set the Stop bit */
@@ -376,7 +378,7 @@ static void ComPort_Config(void)
   if (HAL_UART_Init(&UartHandle) != HAL_OK)
   {
     /* Initialization Error */
-    Error_Handler();
+//    Error_Handler();
   }
 
   /* Start reception: provide the buffer pointer with offset and the buffer
@@ -406,7 +408,7 @@ static void TIM_Config(void)
   if (HAL_TIM_Base_Init(&TimHandle) != HAL_OK)
   {
     /* Initialization Error */
-    Error_Handler();
+//    Error_Handler();
   }
 }
 
@@ -415,10 +417,10 @@ static void TIM_Config(void)
   * @param  UartHandle: UART handle
   * @retval None
   */
-void HAL_UART_ErrorCallback(UART_HandleTypeDef * UartHandle)
+void HAL_UART_ErrorCallback(UART_HandleTypeDef * /*UartHandle*/)
 {
   /* Transfer error occurred in reception and/or transmission process */
-  Error_Handler();
+//  Error_Handler();
 }
 
 /**
