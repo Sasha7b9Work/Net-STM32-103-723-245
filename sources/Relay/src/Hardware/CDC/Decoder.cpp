@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "Hardware/CDC/Decoder.h"
 #include "Hardware/CDC/CDC.h"
+#include "Hardware/Relay.h"
 #include <cstring>
 
 
@@ -31,10 +32,14 @@ void Decoder::AppendData(uint8 *data, int size)
         if (BeginIs("#RELAY ON"))
         {
             CDC::Transmit("Relay on\n");
+
+            Relay::On();
         }
         else if (BeginIs("#RELAY OFF"))
         {
             CDC::Transmit("Relay off\n");
+
+            Relay::Off();
         }
 
         pointer = 0;

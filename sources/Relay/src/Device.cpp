@@ -4,11 +4,14 @@
 #include "Hardware/HAL/HAL.h"
 #include "Hardware/CDC/CDC.h"
 #include "Hardware/Timer.h"
+#include "Hardware/Relay.h"
 
 
 void Device::Init()
 {
     HAL::Init();
+
+    Relay::Init();
 }
 
 

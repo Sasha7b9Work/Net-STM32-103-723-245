@@ -494,6 +494,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Timer.h</FilePath>
             </File>
+            <File>
+              <FileName>Relay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\Relay.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Relay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Relay.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1110,6 +1120,16 @@
               <FileName>Timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>Relay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\Relay.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Relay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Relay.h</FilePath>
             </File>
           </Files>
         </Group>
