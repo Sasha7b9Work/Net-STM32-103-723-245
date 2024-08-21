@@ -1,0 +1,4 @@
+1 +
+2 SWDIO
+3 GND
+4 SWCLK

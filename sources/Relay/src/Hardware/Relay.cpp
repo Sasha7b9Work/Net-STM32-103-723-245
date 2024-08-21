@@ -12,7 +12,7 @@ void Relay::Init()
 {
     GPIO_InitTypeDef is;
 
-    is.Pin = GPIO_PIN_6;
+    is.Pin = GPIO_PIN_7;
     is.Mode = GPIO_MODE_OUTPUT_PP;
     is.Pull = GPIO_NOPULL;
 
@@ -22,11 +22,11 @@ void Relay::Init()
 
 void Relay::On()
 {
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
 }
 
 
 void Relay::Off()
 {
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
 }
