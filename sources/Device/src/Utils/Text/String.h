@@ -67,7 +67,7 @@ public:
         static char null_char = 0;
 
         return null_char;
-    };
+    }
 
     bool ToInt(int *out);
 

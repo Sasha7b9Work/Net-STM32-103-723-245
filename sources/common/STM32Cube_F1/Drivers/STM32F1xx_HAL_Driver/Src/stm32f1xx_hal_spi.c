@@ -151,6 +151,20 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Winvalid-utf8"
+    #pragma clang diagnostic ignored "-Wpadded"
+    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+    #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
+    #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
+    #pragma clang diagnostic ignored "-Wswitch-enum"
+    #pragma clang diagnostic ignored "-Wcovered-switch-default"
+    #pragma clang diagnostic ignored "-Wundef"
+    #pragma clang diagnostic ignored "-Wcast-align"
+    #pragma clang diagnostic ignored "-Wimplicit-int-conversion"
+#endif
+
 #include "stm32f1xx_hal.h"
 
 /** @addtogroup STM32F1xx_HAL_Driver

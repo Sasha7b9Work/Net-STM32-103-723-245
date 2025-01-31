@@ -26,7 +26,7 @@ bool CG_Anem::GetMeasure(float *velocity_out)
         return false;
     }
 
-    timeNext += TIME_MEASURE + (std::rand() % 100);
+    timeNext += TIME_MEASURE + (uint)(std::rand() % 100);
 
 #ifdef IN_MODE_TEST
 

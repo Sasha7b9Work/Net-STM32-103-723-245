@@ -178,7 +178,7 @@ void Display::SetMeasure(TypeMeasure::E type, float value)
     if (value == measure.value) //-V550
     {
         return;
-    };
+    }
 
     measure.old.SetFormat(measure.current.c_str());
 
@@ -186,7 +186,7 @@ void Display::SetMeasure(TypeMeasure::E type, float value)
     measure.time = TIME_MS;
     measure.value = value;
 
-    measure.current.SetFormat("%f", value);
+    measure.current.SetFormat("%f", (double)value);
     measure.current[6] = '\0';
 }
 

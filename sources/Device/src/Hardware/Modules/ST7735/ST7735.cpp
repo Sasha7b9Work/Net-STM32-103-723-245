@@ -38,10 +38,10 @@ const uint16 Color::colors[Color::Count] =
 
 namespace ST7735
 {
-#define SET_DC   HAL_GPIO_WritePin(GPIOB, PIN_DC, GPIO_PIN_SET);
-#define RESET_DC HAL_GPIO_WritePin(GPIOB, PIN_DC, GPIO_PIN_RESET);
-#define SET_CS   HAL_GPIO_WritePin(GPIOB, PIN_CS, GPIO_PIN_SET);
-#define RESET_CS HAL_GPIO_WritePin(GPIOB, PIN_CS, GPIO_PIN_RESET);
+#define SET_DC   HAL_GPIO_WritePin(GPIOB, PIN_DC, GPIO_PIN_SET)
+#define RESET_DC HAL_GPIO_WritePin(GPIOB, PIN_DC, GPIO_PIN_RESET)
+#define SET_CS   HAL_GPIO_WritePin(GPIOB, PIN_CS, GPIO_PIN_SET)
+#define RESET_CS HAL_GPIO_WritePin(GPIOB, PIN_CS, GPIO_PIN_RESET)
 
     static const uint16 PIN_RESET = GPIO_PIN_11;
     static const uint16 PIN_DC = GPIO_PIN_14;
@@ -61,7 +61,8 @@ void ST7735::Init()
     __HAL_RCC_SPI2_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
 
-    GPIO_InitTypeDef spi_struct = {0};
+    GPIO_InitTypeDef spi_struct;
+    std::memset(&spi_struct, 0, sizeof(spi_struct));
 
     spi_struct.Pin = GPIO_PIN_13 |     // SCL
                      GPIO_PIN_15;      // MOSI
@@ -85,7 +86,8 @@ void ST7735::Init()
 
     HAL_SPI_Init(&handle);
 
-    GPIO_InitTypeDef gpio_struct = {0};
+    GPIO_InitTypeDef gpio_struct;
+    std::memset(&gpio_struct, 0, sizeof(gpio_struct));
 
     HAL_GPIO_WritePin(GPIOB, PIN_RESET | PIN_DC | PIN_CS, GPIO_PIN_RESET);
 
@@ -153,7 +155,7 @@ void ST7735::WriteBuffer(int x0, int y0, int width, int height)
                     break;                      \
                 }                               \
             }                                   \
-            SPI2->DR = Color::colors[value & 0x0f];
+            SPI2->DR = Color::colors[value & 0x0f]
 
     if ((x0 % 8) == 0 && ((width % 8) == 0))
     {
@@ -171,7 +173,7 @@ void ST7735::WriteBuffer(int x0, int y0, int width, int height)
                     {
                         break;
                     }
-                };
+                }
 
                 SPI2->DR = Color::colors[value & 0x0f];            // 0 nibble
 
@@ -261,7 +263,7 @@ void ST7735::SendData16(uint16 data)
         {
             break;
         }
-    };
+    }
     SPI2->DR = data;
 
     while (!(SPI2->SR & SPI_SR_TXE))
@@ -270,14 +272,14 @@ void ST7735::SendData16(uint16 data)
         {
             break;
         }
-    };
+    }
     while ((SPI2->SR & SPI_SR_BSY))
     {
         if (meter.ElapsedTime() > 100)
         {
             break;
         }
-    };
+    }
 
     SET_CS;
 }

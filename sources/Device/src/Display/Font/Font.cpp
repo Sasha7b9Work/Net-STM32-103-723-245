@@ -20,7 +20,7 @@ int Font::Text::Length(pchar text)
 
     while (*text)
     {
-        result += (uint)Font::Symbol::Width((uint8)*text) + Font::GetSpacing();
+        result += (uint)Font::Symbol::Width((uint8)*text) + (uint)Font::GetSpacing();
         text++;
     }
 
@@ -100,7 +100,7 @@ bool Font::Symbol::LineNotEmpty(uint eChar, int line)
 {
     if (current == TypeFont::_8)
     {
-        static const uint8 *bytes = 0;
+        static const uint8 *bytes = nullptr;
         static uint prevChar = (uint)(-1);
 
         if (eChar != prevChar)

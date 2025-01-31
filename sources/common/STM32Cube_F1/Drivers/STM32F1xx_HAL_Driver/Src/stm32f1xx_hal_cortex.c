@@ -96,6 +96,15 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Winvalid-utf8"
+    #pragma clang diagnostic ignored "-Wpadded"
+    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
+    #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
+    #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
+#endif
+
 #include "stm32f1xx_hal.h"
 
 /** @addtogroup STM32F1xx_HAL_Driver
@@ -229,7 +238,7 @@ void HAL_NVIC_DisableIRQ(IRQn_Type IRQn)
   * @brief  Initiates a system reset request to reset the MCU.
   * @retval None
   */
-void HAL_NVIC_SystemReset(void)
+__attribute__ ((noreturn)) void HAL_NVIC_SystemReset(void)
 {
   /* System Reset */
   NVIC_SystemReset();

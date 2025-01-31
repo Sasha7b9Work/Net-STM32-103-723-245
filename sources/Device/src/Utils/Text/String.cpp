@@ -175,7 +175,7 @@ int String<capacity>::DrawWithLimitation(int x, int y, Color::E color, int limit
     while (*text)
     {
         x = Text::DrawCharWithLimitation(x, y, (uint8)*text, limitX, limitY, limitWidth, limitHeight);
-        result += Font::Symbol::Width((uint8)*text);
+        result += (uint)Font::Symbol::Width((uint8)*text);
         text++;
     }
 

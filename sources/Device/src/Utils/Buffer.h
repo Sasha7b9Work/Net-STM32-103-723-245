@@ -7,7 +7,7 @@ class Buffer
 {
 public:
 
-    Buffer() : size(size_buffer) {}; //-V730
+    Buffer() : size(size_buffer) {} //-V730
 
     Buffer(int _size) : size(size_buffer) //-V730
     {
@@ -150,9 +150,9 @@ template<class T>
 class Buffer1024 : public Buffer<T, 1024>
 {
 public:
-    Buffer1024() : Buffer<T, 1024>() { };
-    Buffer1024(int size) : Buffer<T, 1024>(size) { };
-    Buffer1024(int size, T value) : Buffer<T, 1024>(size, value) { };
+    Buffer1024() : Buffer<T, 1024>() { }
+    Buffer1024(int size) : Buffer<T, 1024>(size) { }
+    Buffer1024(int size, T value) : Buffer<T, 1024>(size, value) { }
 };
 
 
@@ -160,7 +160,7 @@ template<class T>
 class Buffer2048 : public Buffer<T, 2048>
 {
 public:
-    Buffer2048() : Buffer<T, 2048>() { };
-    Buffer2048(int size) : Buffer<T, 2048>(size) { };
-    Buffer2048(int size, T value) : Buffer<T, 2048>(size, value) { };
+    Buffer2048() : Buffer<T, 2048>() { }
+    Buffer2048(int size) : Buffer<T, 2048>(size) { }
+    Buffer2048(int size, T value) : Buffer<T, 2048>(size, value) { }
 };

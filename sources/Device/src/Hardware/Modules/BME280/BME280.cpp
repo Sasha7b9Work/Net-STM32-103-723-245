@@ -1,4 +1,10 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    #pragma clang diagnostic ignored "-Wmacro-redefined"
+    #pragma clang diagnostic ignored "-Wpadded"
+#endif
+
 #include "defines.h"
 #include "Hardware/Modules/BME280/BME280.h"
 #include "Hardware/Modules/BME280/bme280_driver.h"
@@ -53,7 +59,7 @@ bool BME280::GetMeasures(float* temp, float* pressure, float* humidity)
         return false;
     }
 
-    timeNext += TIME_MEASURE + (std::rand() % 100);
+    timeNext += TIME_MEASURE + (uint)(std::rand() % 100);
 
 #ifdef IN_MODE_TEST
 
