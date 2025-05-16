@@ -1154,8 +1154,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_CONF.h</PathWithFileName>
-      <FilenameWithoutPath>HAL_CONF.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Hardware\HAL\stm32f1xx_hal_conf.h</PathWithFileName>
+      <FilenameWithoutPath>stm32f1xx_hal_conf.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1483,7 +1483,7 @@
 
   <Group>
     <GroupName>Utils</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1551,7 +1551,7 @@
 
   <Group>
     <GroupName>Utils/Text</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
